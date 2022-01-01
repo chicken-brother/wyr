@@ -1,0 +1,100 @@
+{% extends 'main.html' %}
+
+{% block content %}
+
+<style>
+    .center-text-in-div-container{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    img{
+        max-width: 100%
+    }
+
+    .hoverable-clickable{
+
+    }
+</style>
+
+<script>
+    function call_counter(url, pk) {
+        window.open(url);
+        $.get('YOUR_VIEW_HERE/'+pk+'/', function (data) {
+            alert("counter updated!");
+        });
+    }
+</script>
+
+<div class="home-container">
+
+    <div>
+        
+    </div>
+
+
+
+    <div>
+        <div>
+            {% for question in questions %}
+
+            <div class="container">
+                
+                <div class="row">
+                    <div class="col-xs-0 col-sm-1 col-md-2 col-lg-3" style="background-color: chartreuse;"></div>
+                    <div class="col-xs-12 col-sm-10 col-md-8 col-lg-6 center-text-in-div-container" style="background-color: aquamarine; height: 50px;">Would you rather</div>
+                    <div class="col-xs-0 col-sm-1 col-md-2 col-lg-3" style="background-color: chartreuse;"></div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-0 col-sm-1 col-md-2 col-lg-3" style="background-color: chartreuse;"></div>
+                    <div class="col-xs-6 col-sm-5 col-md-4 col-lg-3 center-text-in-div-container" style="background-color:red; height: 50px;">{{question.opt1}}</div>
+                    <div class="col-xs-6 col-sm-5 col-md-4 col-lg-3 center-text-in-div-container" style="background-color:brown; height: 50px;">{{question.opt2}}</div>
+                    <div class="col-xs-0 col-sm-1 col-md-2 col-lg-3" style="background-color: chartreuse;"></div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-0 col-sm-1 col-md-2 col-lg-3" style="background-color: chartreuse;"></div>
+                    <div class="col-xs-6 col-sm-5 col-md-4 col-lg-3" style="background-color:violet; height: 200px; padding: 0px; margin: 0px;">
+                        <img src={{question.img1}} style="height: 100%; width: 100%; object-fit: cover;" onclick="call_counter('https://www.google.com', 12345);">
+                    
+                    </div>
+                    <div class="col-xs-6 col-sm-5 col-md-4 col-lg-3" style="background-color:darkorchid; height: 200px; padding: 0px; margin: 0px;">
+                        <img src={{question.img2}} style="height: 100%; width: 100%; object-fit: cover;" onclick="call_counter('https://www.google.com/search?q=tupac', 12345);">
+                    </div>
+                    <div class="col-xs-0 col-sm-1 col-md-2 col-lg-3" style="background-color: chartreuse;"></div>
+                </div>
+                <div class="row" style="height: 100px;">
+
+                </div>
+            </div>
+
+
+            <!--
+
+                <div class="container">
+                    <div style="background-color:aqua;" class="row">
+                        <div  class="col-12"><a href="/question/{{question.id}}">Would you rather</a></div>
+                    </div>
+                    <div style="background-color:blueviolet;" class="row">
+                        <div class="col-6">{{question.opt1}}</div>
+                        <div class="col-6">{{question.opt2}}</div>
+                    </div>
+                    <div style="background-color:chartreuse;" class="row">
+                        <img class="col-6" src={{question.img1}}>
+                        <img class="col-6" src={{question.img2}}>
+                    </div>
+                </div>
+
+                -->
+            {% endfor %}
+        </div>
+
+    </div>
+
+    <div>
+
+    </div>
+   
+</div>
+
+{% endblock content %}
